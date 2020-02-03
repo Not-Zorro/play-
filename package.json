@@ -1,18 +1,24 @@
 {
-  "name": "all-your-base",
+  "name": "play",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "jest --config ./jest.config.js --forceExit --coverage --runInBand"
+    "start": "node app.js",
+    "test": "jest --config ./jest.config.js --forceExit --coverage --runInBand --passWithNoTests"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
-    "morgan": "~1.9.1",
     "knex": "^0.19.5",
-    "pg": "^7.8.0"
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.0",
+    "pg": "^7.8.0",
+    "pryjs": "^1.0.3",
+    "uuid4": "^1.1.4"
   },
   "devDependencies": {
     "babel-jest": "^24.9.0",
