@@ -10,10 +10,14 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json()); app.use(bodyParser.urlencoded({extended: true}));
 
 var indexRouter = require('./routes/index');
+var favoritesRouter = require('./routes/api/v1/favorites');
 
 app.use('/', indexRouter);
+app.use('/api/v1/favorites', favoritesRouter);
 
-app.set("port", process.env.PORT || 3000);
-app.listen(app.get('port')); console.log(`Running on port ${app.get('port')}`);
+if (process.env.NODE_ENV !== 'test') {
+  app.set("port", process.env.PORT || 3000);
+  app.listen(app.get('port')); console.log(`Running on port ${app.get('port')}`);
+}
 
 module.exports = app;
