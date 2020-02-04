@@ -1,23 +1,19 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv').config()
+const express = require("express"); const app = express();
+const path = require('path'); app.use(express.static(path.join(__dirname, 'public')));
 
 const environment = process.env.NODE_ENV || 'development';
-const configuration = require('./knexfile')[environment];
+const config = require('./knexfile')[environment];
+const database = require("knex")(config)
+
+const bodyParser = require("body-parser");
+app.use(bodyParser.json()); app.use(bodyParser.urlencoded({extended: true}));
 
 var indexRouter = require('./routes/index');
-var papersRouter = require('./routes/api/v1/papers');
-
-var app = express();
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/v1/papers', papersRouter);
+
+app.set("port", process.env.PORT || 3000);
+app.listen(app.get('port')); console.log(`Running on port ${app.get('port')}`);
 
 module.exports = app;
