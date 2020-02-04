@@ -28,4 +28,14 @@ router.get('/:id', (request, response) => {
   }).catch(err => response.status(404).json({error: err}))
 });
 
+router.delete('/:id', (request, response) => {
+  database('favorites').del().where({id: request.params.id}).then(fav => {
+    if (fav) {
+      response.status(204).send();
+    } else {
+      response.status(404).json({error: "Favorite not found"});
+    }
+  }).catch(err => response.status(404).json({error: err}))
+});
+
 module.exports = router;
