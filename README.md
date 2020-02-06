@@ -96,7 +96,7 @@ Status: 201
 
 ### Viewing all favorited songs
 
-`get /favorites`
+`GET /favorites`
 
 **Example Response**
 
@@ -123,7 +123,7 @@ Status: 200
 
 ### Viewing specific favorited song
 
-`get /favorites/:id`
+`GET /favorites/:id`
 
 **Example Response**
 
