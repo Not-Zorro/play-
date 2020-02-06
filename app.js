@@ -11,9 +11,11 @@ app.use(bodyParser.json()); app.use(bodyParser.urlencoded({extended: true}));
 
 var indexRouter = require('./routes/index');
 var favoritesRouter = require('./routes/api/v1/favorites');
+var playlistsRouter = require('./routes/api/v1/playlists');
 
 app.use('/', indexRouter);
 app.use('/api/v1/favorites', favoritesRouter);
+app.use('/api/v1/playlists', playlistsRouter);
 
 if (process.env.NODE_ENV !== 'test') {
   app.set("port", process.env.PORT || 3000);
