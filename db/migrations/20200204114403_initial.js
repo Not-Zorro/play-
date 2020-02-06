@@ -7,7 +7,12 @@ exports.up = function(knex) {
     fav.string('genre').notNullable().defaultTo('Unknown');
     fav.integer('rating').notNullable();
     fav.timestamps(true, true);
-  });
+  }).then(function() {
+    return knex.schema.table('favorites', function(table) {
+        table.renameColumn('created_at', 'createdAt');
+        table.renameColumn('updated_at', 'updatedAt');
+      })
+    })
 };
 
 exports.down = function(knex) {
