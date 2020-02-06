@@ -144,3 +144,5 @@ Status: 200
 **Example Response**
 
 `Status 204`
+
+[Back to Top](#play)
