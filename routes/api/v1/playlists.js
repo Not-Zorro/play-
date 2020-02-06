@@ -27,6 +27,18 @@ router.post('/', (req, res) => {
   }
 });
 
+router.put('/:id', (req, res) => {
+  database('playlists').where({id: req.params.id}).update(req.body).then(playlist => {
+    if (playlist) {
+      database('playlists').where({id: req.params.id}).first().then(playlist => {
+        res.status(201).send(playlist);
+      })
+    } else {
+      res.status(404).json({error: "Playlist not found"});
+    }
+  }).catch(err => res.status(404).json({error: "Playlist not found/Title is not unique"}))
+});
+
 router.delete('/:id', (req, res) => {
   database('playlists').del().where({id: req.params.id}).then(playlist => {
     if (playlist) {
