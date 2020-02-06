@@ -1,5 +1,7 @@
 # Play
 
+[![Build Status](https://travis-ci.org/Not-Zorro/play.svg?branch=master)](https://travis-ci.org/Not-Zorro/play)
+
 ## Jump-To
 
 - [Setup](#setup)
@@ -17,14 +19,15 @@ Play is an API for favoriting songs based off of the [Musixmatch API](https://de
 
 This API is `JSON 1.0` compliant and only accepts `x-www-form-urlencoded JSON bodies` and `query parameters`
 
-[![Build Status](https://travis-ci.org/Not-Zorro/play.svg?branch=master)](https://travis-ci.org/Not-Zorro/play)
 
 ### Setup
 
 #### Installing necessary dependencies
 
-`npm install`
-`npm install -g knex`
+```
+npm install
+npm install -g knex
+```
 
 #### Set up databases
 
@@ -33,7 +36,6 @@ Development db Setup:
 psql -c 'create database play_dev;' -U postgres
 
 Test db Setup:
-
 psql -c 'create database play_test;' -U postgres
 ```
 
