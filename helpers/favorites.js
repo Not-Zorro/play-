@@ -1,5 +1,5 @@
 function formatFav(fav) {
-  delete fav.created_at; delete fav.updated_at;
+  delete fav.createdAt; delete fav.updatedAt;
   return fav;
 }
 
