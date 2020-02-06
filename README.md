@@ -2,7 +2,14 @@
 
 ## Jump-To
 
+- [Setup](#setup)
+- [Running Tests](#running-tests)
+- [Running the Application](#running-the-application)
+- [Documentation](#documentation)
 - [Favoriting Songs](#favoriting-a-song)
+- [Viewing all Songs](#viewing-all-favorited-songs)
+- [Viewing Specific Song](#viewing-specific-favorited-song)
+- [Deleting Specific Song](#deleting-specific-favorited-song)
 
 ## Description
 
@@ -61,7 +68,7 @@ Production:
 https://play-play-dc.herokuapp.com/api/v1/
 ```
 
-##### Favoriting a Song
+### Favoriting a Song
 
 `POST /favorites`
 
@@ -85,7 +92,7 @@ Status: 201
 }
 ```
 
-##### Viewing all favorited songs
+### Viewing all favorited songs
 
 `get /favorites`
 
@@ -112,7 +119,7 @@ Status: 200
 ]
 ```
 
-##### Viewing specific favorited song
+### Viewing specific favorited song
 
 `get /favorites/:id`
 
@@ -130,7 +137,7 @@ Status: 200
 }
 ```
 
-##### Deleting specific favorited song
+### Deleting specific favorited song
 
 `DELETE /favorites/:id`
 
