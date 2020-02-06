@@ -27,4 +27,14 @@ router.post('/', (req, res) => {
   }
 });
 
+router.delete('/:id', (req, res) => {
+  database('playlists').del().where({id: req.params.id}).then(playlist => {
+    if (playlist) {
+      res.status(204).send();
+    } else {
+      res.status(404).json({error: "Playlist not found"});
+    }
+  }).catch(err => res.status(404).json({error: err}))
+});
+
 module.exports = router;
