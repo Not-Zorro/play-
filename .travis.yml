@@ -15,10 +15,3 @@ script:
 before_script:
 - psql -c 'create database play_test;' -U postgres
 - knex migrate:latest --env test
-deploy:
-  provider: heroku
-  api_key:
-    secure: k+e40FhZcDMK1FpIE+20hlVesw0pTfVEGEGX6ExvFuSf9dVUs1PBZPWUYZIizGi2W5Jz9yJa5VXkcdgz99g4j3bDQwCPWREpTKSONqbytXYtYzomTu3qzWwr7vzyWy+9mH4v8U0DeNO05Js/qnkkpLXRW5+2dWmqytSWnWjjzkzYJze8i3qXZ0YWXOx+Yyy8d1ZvJZ70Bnahz9PUfg/wyzEeXVJ44LF1LEmGi0qfXSbnGfloNBIQolVGqq0IEA0eHm/DxQEWRyfvayrmBFn1HQzRxAnKr+wYcAyLlMKWjaIUrHfC39q6nISayyTJ3NXhsjEERJgQaNFCHY81uzdkfm3H+/urPLsiX3h6EhSA0+AFhH/+Il4wdOW8DhvnIGRWJX4kQqW2jvBevr88y+/xC2OLakf0DA1/1Gz02fNoyoqKBRFXCLm8DCmIesCz1IUEEmS7w/1jSawazaKVBQhrbE9vP9PpKVpbabsFehqkocCzBG1mTFgaHAzjQgOhbh1EGwUf0ZEzgZMNE7oelIwwnJdozEJDebIWHD15M3SCXIRAIt0iSti5XPKiU2TiruKubO94RGWszAEtu1PVs2TzjLC/8Z0c2qah2WV7CIwaT6raKiTMqbLhTWtMYheX9V8nodb2BvchUG2FCu+1F7WmPTR/dKRfYe09/YvkbM6uE3c=
-  app: play-play-dc
-  on:
-    repo: Not-Zorro/play
