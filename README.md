@@ -1,5 +1,9 @@
 # Play
 
+## Jump-To
+
+- [Favoriting Songs](#favoriting-a-song)
+
 ## Description
 
 Play is an API for favoriting songs based off of the [Musixmatch API](https://developer.musixmatch.com/documentation) providing many different endpoints.
