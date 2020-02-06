@@ -9,8 +9,8 @@ exports.up = function(knex) {
 
 exports.down = function(knex) {
   return knex.schema.table('playlists', function(table) {
-    playlist.renameColumn('createdAt', 'created_at');
-    playlist.renameColumn('updatedAt', 'updated_at');
+    table.renameColumn('createdAt', 'created_at');
+    table.renameColumn('updatedAt', 'updated_at');
     table.dropUnique('title')
   })
 };
