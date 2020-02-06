@@ -1,74 +1,148 @@
-# All your Express base are belong to us
+# Play
 
-[![Build Status](https://travis-ci.com/turingschool-examples/all-your-base.svg?branch=master)](https://travis-ci.com/turingschool-examples/all-your-base)
+## Jump-To
 
-## Getting started
-To use this repo, you’ll need to `fork` the repo as your own. Once you have done that, you’ll need to run the following command below to get everything up and running. 
+- [Setup](#setup)
+- [Running Tests](#running-tests)
+- [Running the Application](#running-the-application)
+- [Documentation](#documentation)
+- [Favoriting Songs](#favoriting-a-song)
+- [Viewing all Songs](#viewing-all-favorited-songs)
+- [Viewing Specific Song](#viewing-specific-favorited-song)
+- [Deleting Specific Song](#deleting-specific-favorited-song)
+
+## Description
+
+Play is an API for favoriting songs based off of the [Musixmatch API](https://developer.musixmatch.com/documentation) providing many different endpoints.
+
+This API is `JSON 1.0` compliant and only accepts `x-www-form-urlencoded JSON bodies` and `query parameters`
+
+[![Build Status](https://travis-ci.org/Not-Zorro/play.svg?branch=master)](https://travis-ci.org/Not-Zorro/play)
+
+### Setup
 
 #### Installing necessary dependencies
-The easiest way to get started is to run the following command. This will pull down any necessary dependencies that your app will require. You can think of this command as something incredibly similar to `bundle install` in Rails. 
 
 `npm install`
+`npm install -g knex`
 
-#### Set up your local database
-You’ll need to figure out a name for your database. We suggest calling it something like `sweater_weather_dev`.  
+#### Set up databases
 
-To get things set up, you’ll need to access your Postgres instance by typing in `psql` into your terminal. Once there, you can create your database by running the comment `CREATE DATABASE PUT_DATABASE_NAME_HERE_dev;`. 
+```
+Development db Setup:
+psql -c 'create database play_dev;' -U postgres
 
-Now you have a database for your new project.
+Test db Setup:
+
+psql -c 'create database play_test;' -U postgres
+```
 
 #### Migrations
-Once you have your database setup, you’ll need to run some migrations (if you have any). You can do this by running the following command: 
 
-`knex migrate:latest`
-
-
-Instructions to create database, run migrations, and seed: 
 ```
-psql
-CREATE DATABASE DATABASE_NAME_dev;
-\q
-
+Development Migrations / Seeds:
 knex migrate:latest
 knex seed:run
-```
 
-#### Set up your test database
-Most of the setup is going to be same as the one you did before. You’ll notice one small difference with setting the environment flag to `test`.  
-
-```
-psql
-CREATE DATABASE DATABASE_NAME_test;
-\q
-
+Testing Migrations
 knex migrate:latest --env test
 ```
 
-## Running your tests
-Running tests are simple and require you to run the following command below: 
+## Running Tests
 
 `npm test`
 
-When the tests have completed, you’ll get a read out of how things panned out. The tests will be a bit more noisy than what you’re used to, so be prepared. 
+## Running the Application
 
-## Setting up your production environment
-This repo comes with a lot of things prepared for you. This includes production ready configuration. To get started, you’ll need to do a few things. 
+`npm start`
 
-- Start a brand new app on the Heroku dashboard 
-- Add a Postgres instance to your new Heroku app
-- Find the URL of that same Postgres instance and copy it. It should look like a long url. It may look something like like `postgres://sdflkjsdflksdf:9d3367042c8739f3...`.
-- Update your `knexfile.js` file to use your Heroku database instance. You’ll see a key of `connection` with a value of an empty string. This is where you’ll paste your new Postgres instance URL. 
+## Documentation
 
-Once you’ve set all of that up, you’ll need to `add the remote` to your new app. This should work no differently than how you’ve done it with any Rails project. Adding this remote will allow you to run `git push heroku master`. 
+### All endpoints go off of:
 
-Once you’ve done that, you’ll need to `bash` into your Heroku instance and get some things set up. 
-
-- Run the following commands to get started:
 ```
-heroku run bash
-npm install
-nom install -g knex
-knex migrate:latest
+Development:
+http://localhost:3000/api/v1/
+
+Production:
+https://play-play-dc.herokuapp.com/api/v1/
 ```
 
-This will install any dependencies, install Knex, and migrate any changes that you’ve made to the database. 
+### Favoriting a Song
+
+`POST /favorites`
+
+**Required Request Body**
+
+```
+Ex: { title: "We Will Rock You", artistName: "Queen" }
+```
+
+**Example Response**
+
+```
+Status: 201
+
+{
+  "id": 1,
+  "title": "We Will Rock You",
+  "artistName": "Queen"
+  "genre": "Rock",
+  "rating": 88
+}
+```
+
+### Viewing all favorited songs
+
+`get /favorites`
+
+**Example Response**
+
+```
+Status: 200
+
+[
+  {
+    "id": 1,
+    "title": "We Will Rock You",
+    "artistName": "Queen"
+    "genre": "Rock",
+    "rating": 88
+  },
+  {
+    "id": 2,
+    "title": "Careless Whisper",
+    "artistName": "George Michael"
+    "genre": "Pop",
+    "rating": 93
+  },
+]
+```
+
+### Viewing specific favorited song
+
+`get /favorites/:id`
+
+**Example Response**
+
+```
+Status: 200
+
+{
+  "id": 1,
+  "title": "We Will Rock You",
+  "artistName": "Queen"
+  "genre": "Rock",
+  "rating": 88
+}
+```
+
+### Deleting specific favorited song
+
+`DELETE /favorites/:id`
+
+**Example Response**
+
+`Status 204`
+
+[Back to Top](#play)
