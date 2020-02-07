@@ -4,14 +4,31 @@
 
 ## Jump-To
 
-- [Setup](#setup)
-- [Running Tests](#running-tests)
-- [Running the Application](#running-the-application)
-- [Documentation](#documentation)
-- [Favoriting Songs](#favoriting-a-song)
-- [Viewing all Songs](#viewing-all-favorited-songs)
-- [Viewing Specific Song](#viewing-specific-favorited-song)
-- [Deleting Specific Song](#deleting-specific-favorited-song)
+> [Setup](#setup)
+>
+> [Running Tests](#running-tests)
+>
+> [Running the Application](#running-the-application)
+>
+> [Documentation](#documentation)
+>
+>> [Favorites](#favorites)
+>>> [Favoriting Songs](#favoriting-a-song)
+>>>
+>>> [Viewing all Songs](#viewing-all-favorited-songs)
+>>>
+>>> [Viewing Specific Song](#viewing-specific-favorited-song)
+>>>
+>>> [Deleting Specific Song](#deleting-specific-favorited-song)
+>>
+>> [Playlists](#playlists)
+>>>[Creating Playlists](#create-a-playlist)
+>>>
+>>>[Viewing all Playlists](#viewing-all-playlists)
+>>>
+>>>[Updating Playlists](#updating-a-playlist)
+>>>
+>>>[Deleting Playlists](#delete-a-playlist)
 
 ## Description
 
@@ -69,6 +86,8 @@ http://localhost:3000/api/v1/
 Production:
 https://play-play-dc.herokuapp.com/api/v1/
 ```
+
+##Favorites
 
 ### Favoriting a Song
 
@@ -142,6 +161,92 @@ Status: 200
 ### Deleting specific favorited song
 
 `DELETE /favorites/:id`
+
+**Example Response**
+
+`Status 204`
+
+## Playlists
+
+### Create a Playlist
+
+`POST /playlists`
+
+**Required Request Body**
+
+```
+Ex: { title: "Cleaning House" }
+```
+
+**Example Response**
+
+```
+Status: 201
+
+{
+  "id": 1,
+  "title": "Cleaning House",
+  "createdAt": 2019-11-26T16:03:43+00:00,
+  "updatedAt": 2019-11-26T16:03:43+00:00
+}
+```
+
+### Viewing all Playlists
+
+`GET /playlists`
+
+**Example Response**
+
+```
+Status: 200
+
+[
+  {
+    "id": 1,
+    "title": "Cleaning House",
+    "createdAt": 2019-11-26T16:03:43+00:00,
+    "updatedAt": 2019-11-26T16:03:43+00:00
+  },
+  {
+    "id": 2,
+    "title": "Running Mix",
+    "createdAt": 2019-11-26T16:03:43+00:00,
+    "updatedAt": 2019-11-26T16:03:43+00:00
+  },
+]
+```
+
+### Updating a Playlist
+
+`PUT /playlists/:id`
+
+**Required Request Body**
+
+```
+Available Params: title
+
+Ex:
+{
+  title: "My Jams"
+}
+```
+
+**Example Response**
+
+```
+Status: 201
+
+{
+  "id": 2,
+  "title": "My Jams",
+  "createdAt": 2019-11-26T16:03:43+00:00,
+  "updatedAt": 2019-11-26T16:03:43+00:00
+}
+```
+
+### Deleting a Playlists
+
+`DELETE /playlists/:id`
 
 **Example Response**
 
