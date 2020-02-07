@@ -1,7 +1,7 @@
 require('dotenv').config();
 var request = require("supertest");
-var app = require('../app');
-var musixmatchService = require('../services/musixmatch_service');
+var app = require('../../app');
+var musixmatchService = require('../../services/musixmatch_service');
 const nock = require('nock');
 
 describe('Test getting musixmatch api data', () => {
