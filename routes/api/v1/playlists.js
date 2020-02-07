@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  database('playlists').where({id: req.params.id}).update(req.body).then(playlist => {
+  database('playlists').where({id: req.params.id}).update({title: req.body.title}).then(playlist => {
     if (playlist) {
       database('playlists').where({id: req.params.id}).first().then(playlist => {
         res.status(201).send(playlist);
