@@ -244,7 +244,7 @@ Status: 201
 }
 ```
 
-### Deleting a Playlists
+### Delete a Playlist
 
 `DELETE /playlists/:id`
 
