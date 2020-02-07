@@ -87,7 +87,7 @@ Production:
 https://play-play-dc.herokuapp.com/api/v1/
 ```
 
-##Favorites
+## Favorites
 
 ### Favoriting a Song
 
