@@ -1,8 +1,8 @@
-var app = require('../app');
+var app = require('../../app');
 var request = require("supertest");
 
 const environment = process.env.NODE_ENV || 'test';
-const configuration = require('../knexfile')[environment];
+const configuration = require('../../knexfile')[environment];
 const database = require('knex')(configuration);
 
 describe('Test creating playlists', () => {
