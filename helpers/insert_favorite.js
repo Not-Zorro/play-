@@ -8,7 +8,7 @@ module.exports = async function insertFavorite(data) {
   let trackData = data.message.body.track
   let genre = findGenre(data);
   let rating = findRating(data);
-  if (isNaN(rating) == true) {
+  if (isNaN(rating)) {
     return rating
   }
   return await database('favorites').insert({
