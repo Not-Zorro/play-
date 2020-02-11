@@ -4,6 +4,8 @@ var router = express.Router();
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('../../../knexfile')[environment];
 const database = require('knex')(configuration);
+const findFavorite = require('../../../helpers/find_favorite')
+const findPlaylist = require('../../../helpers/find_playlist')
 
 router.get('/', (req, res) => {
   database('playlists').select().then(playlists => {
@@ -48,5 +50,19 @@ router.delete('/:id', (req, res) => {
     }
   }).catch(err => res.status(404).json({error: err}))
 });
+
+//playlist_favorites
+
+router.post('/:playlist_id/favorites/:fav_id', async (req, res) => {
+  let playlist = await findPlaylist(req.params.playlist_id)
+  if (!playlist) {return res.status(404).json({error: 'Playlist not found'})}
+
+  let favorite = await findFavorite(req.params.fav_id)
+  if (!favorite) {return res.status(404).json({error: 'Favorite not found'})}
+
+  database('playlist_favorites').insert({playlistId: playlist.id, favoriteId: favorite.id}).then(() => {
+    res.status(201).json({Success: `${favorite.title} has been added to ${playlist.title}!`})
+  }).catch(() => res.status(400).json({error: 'Cannot add same favorite multiple times'}))
+})
 
 module.exports = router;
