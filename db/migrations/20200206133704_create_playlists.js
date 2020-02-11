@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
   return knex.schema.createTable('playlists', function(playlist) {
     playlist.increments('id').primary();
