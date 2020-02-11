@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
   return knex.schema.table('playlists', function(playlist) {
     playlist.renameColumn('created_at', 'createdAt');
