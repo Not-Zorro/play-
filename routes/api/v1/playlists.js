@@ -55,6 +55,12 @@ router.delete('/:id', (req, res) => {
 
 //playlist_favorites
 
+router.get('/:playlist_id/favorites', async (req, res) => {
+  let playlist = await findPlaylist(req.params.playlist_id)
+  if (!playlist) {return res.status(404).json({error: 'Playlist not found'})}
+  res.status(200).json(await formatPlaylist(playlist))
+});
+
 router.post('/:playlist_id/favorites/:fav_id', async (req, res) => {
   let playlist = await findPlaylist(req.params.playlist_id)
   if (!playlist) {return res.status(404).json({error: 'Playlist not found'})}
@@ -67,10 +73,11 @@ router.post('/:playlist_id/favorites/:fav_id', async (req, res) => {
   }).catch(() => res.status(400).json({error: 'Cannot add same favorite multiple times'}))
 })
 
-router.get('/:playlist_id/favorites', async (req, res) => {
-  let playlist = await findPlaylist(req.params.playlist_id)
-  if (!playlist) {return res.status(404).json({error: 'Playlist not found'})}
-  res.status(200).json(await formatPlaylist(playlist))
-});
+router.delete('/:playlist_id/favorites/:fav_id', (req, res) => {
+  database('playlist_favorites').del().where({playlist_id: req.params.playlist_id, favorite_id: req.params.fav_id}).then(playFav => {
+    if (playFav) {return res.status(204).send()}
+    else {return res.status(404).json({error: "That Playlist/Favorite relation was not found"})}
+  })
+})
 
 module.exports = router;
