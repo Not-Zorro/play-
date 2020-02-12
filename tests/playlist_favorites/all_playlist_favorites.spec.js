@@ -48,4 +48,12 @@ describe('Test the playlist favorites endpoints', () => {
       expect(res.body.favorites[1].rating).toBe(93);
     });
   })
+
+  it('It should respond with a 404 if no favs in db', async () => {
+    const res = await request(app)
+      .get("/api/v1/playlists/2500/favorites");
+
+    expect(res.statusCode).toBe(404);
+    expect(res.body).toEqual({error: 'Playlist not found'});
+  });
 })
