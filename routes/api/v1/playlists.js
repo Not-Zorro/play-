@@ -26,10 +26,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   if (req.body.title) {
-    database('playlists').insert({title: req.body.title}, 'id').then(playlist => {
-      database('playlists').where({id: playlist[0]}).first().then(playlist => {
-        res.status(200).json(playlist);
-      })
+    database('playlists').insert({title: req.body.title}, '*').then(playlist => {
+      res.status(200).json(playlist[0])
     }).catch(error => res.status(400).json({error: 'Title must be unique'}))
   } else {
     res.status(400).json({error: "Title not provided"});
@@ -37,14 +35,9 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  database('playlists').where({id: req.params.id}).update({title: req.body.title}).then(playlist => {
-    if (playlist) {
-      database('playlists').where({id: req.params.id}).first().then(playlist => {
-        res.status(201).send(playlist);
-      })
-    } else {
-      res.status(404).json({error: "Playlist not found"});
-    }
+  database('playlists').where({id: req.params.id}).update({title: req.body.title}, '*').then(playlist => {
+    if (playlist[0]) { res.status(201).send(playlist[0]) }
+    else { res.status(404).json({error: "Playlist not found"}) }
   }).catch(err => res.status(404).json({error: "Playlist not found/Title is not unique"}))
 });
 
