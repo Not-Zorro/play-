@@ -10,9 +10,14 @@ const findPlaylist = require('../../../helpers/find_playlist')
 const formatPlaylist = require('../../../helpers/format_playlist')
 
 router.get('/', (req, res) => {
-  database('playlists').select().then(playlists => {
+  database('playlists').select().then(async playlists => {
     if (playlists.length) {
-      res.status(200).json(playlists);
+      let formattedPlaylists = await playlists.map(async playlist => {
+        return await formatPlaylist(playlist)
+      })
+
+      Promise.all(formattedPlaylists).then(playlists => res.status(200).json(playlists))
+
     } else {
       res.status(404).json({error: "No playlists currently"});
     }
