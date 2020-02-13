@@ -4,9 +4,15 @@
 
 ## Core Contributors
 
- - [David Lopez](https://github.com/Not-Zorro)
+- [David Lopez](https://github.com/Not-Zorro)
 
- - [Christopher Kelling](https://github.com/cjkelling)
+- [Christopher Kelling](https://github.com/cjkelling)
+
+## Tech Stack
+
+- Node.js with Express.js
+- Knex.js for ORM
+- Jest.js for Testing
 
 ## Jump-To
 
