@@ -2,6 +2,12 @@
 
 [![Build Status](https://travis-ci.org/Not-Zorro/play.svg?branch=master)](https://travis-ci.org/Not-Zorro/play)
 
+## Core Contributors
+
+ - [David Lopez](https://github.com/Not-Zorro)
+
+ - [Christopher Kelling](https://github.com/cjkelling)
+
 ## Jump-To
 
 > [Setup](#setup)
@@ -62,6 +68,10 @@ psql -c 'create database play_dev;' -U postgres
 Test db Setup:
 psql -c 'create database play_test;' -U postgres
 ```
+
+#### Schema
+
+![Schema](https://user-images.githubusercontent.com/43835133/74450037-61f7ee80-4e75-11ea-9fee-da5c1bc2df6a.png)
 
 #### Migrations
 
