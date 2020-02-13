@@ -9,7 +9,7 @@ async function formatPlaylist(playlist) {
     return formatFav(fav)
   }))
   playlist.songCount = await database.raw(`SELECT COUNT(favorites) AS songCount FROM favorites INNER JOIN playlist_favorites ON favorites.id = playlist_favorites.favorite_id WHERE playlist_favorites.playlist_id = ${playlist.id}`).then(data => parseInt(data.rows[0].songcount))
-  playlist.songAvgRating = await database.raw(`SELECT AVG(favorites.rating) AS songAvgRating FROM favorites INNER JOIN playlist_favorites ON favorites.id = playlist_favorites.favorite_id WHERE playlist_favorites.playlist_id = ${playlist.id}`).then(data => parseFloat(data.rows[0].songavgrating))
+  playlist.songAvgRating = await database.raw(`SELECT AVG(favorites.rating) AS songAvgRating FROM favorites INNER JOIN playlist_favorites ON favorites.id = playlist_favorites.favorite_id WHERE playlist_favorites.playlist_id = ${playlist.id}`).then(data => parseFloat(data.rows[0].songavgrating) || 0)
   return playlist
 }
 
