@@ -29,6 +29,13 @@
 >>>[Updating Playlists](#updating-a-playlist)
 >>>
 >>>[Deleting Playlists](#delete-a-playlist)
+>>
+>> [Favorites in Playlists](#favorites-in-playlists)
+>>>[Adding a Favorite to a Playlist](#add-to-playlist)
+>>>
+>>>[Viewing Favorites in Playlists](#viewing-favorites-in-a-playlist)
+>>>
+>>>[Removing a Favorite to a Playlist](#remove-from-playlist)
 
 ## Description
 
@@ -201,18 +208,39 @@ Status: 201
 Status: 200
 
 [
-  {
-    "id": 1,
-    "title": "Cleaning House",
-    "createdAt": 2019-11-26T16:03:43+00:00,
-    "updatedAt": 2019-11-26T16:03:43+00:00
-  },
-  {
-    "id": 2,
-    "title": "Running Mix",
-    "createdAt": 2019-11-26T16:03:43+00:00,
-    "updatedAt": 2019-11-26T16:03:43+00:00
-  },
+    {
+        "id": 1,
+        "title": "yolo",
+        "createdAt": "2020-02-12T15:26:09.179Z",
+        "updatedAt": "2020-02-12T15:26:09.179Z",
+        "favorites": [
+            {
+                "id": 1,
+                "title": "We Will Rock You",
+                "artistName": "Queen",
+                "genre": "Rock",
+                "rating": 88
+            },
+            {
+                "id": 2,
+                "title": "Careless Whisper",
+                "artistName": "George Michael",
+                "genre": "Unknown",
+                "rating": 93
+            }
+        ],
+        "songCount": 2,
+        "songAvgRating": 90.5
+    },
+    {
+        "id": 2,
+        "title": "new jams",
+        "createdAt": "2020-02-13T03:09:18.605Z",
+        "updatedAt": "2020-02-13T03:09:18.605Z",
+        "favorites": [],
+        "songCount": 0,
+        "songAvgRating": 0
+    }
 ]
 ```
 
@@ -247,6 +275,65 @@ Status: 201
 ### Delete a Playlist
 
 `DELETE /playlists/:id`
+
+**Example Response**
+
+`Status 204`
+
+## Favorites in Playlists
+
+### Add to Playlist
+
+`POST /playlists/:playlistId/favorites/:favoriteId`
+
+**Example Response**
+
+```
+Status: 201
+
+{
+  "Success": "{Song Title} has been added to {Playlist Title}!"
+}
+```
+
+### Viewing Favorites in a Playlist
+
+`GET /playlists/:playlistId/favorites`
+
+**Example Response**
+
+```
+Status: 200
+
+{
+  "id": 1,
+  "title": "Cleaning House",
+  "createdAt": "2019-11-26T16:03:43+00:00",
+  "updatedAt": "2019-11-26T16:03:43+00:00",
+  "favorites" : [
+                  {
+                    "id": 1,
+                    "title": "We Will Rock You",
+                    "artistName": "Queen"
+                    "genre": "Rock",
+                    "rating": 25
+                  },
+                  {
+                    "id": 4,
+                    "title": "Back In Black",
+                    "artistName": "AC/DC"
+                    "genre": "Rock",
+                    "rating": 30
+                  }
+               ],
+  "songCount": 2,
+  "songAvgRating": 27.5
+}
+```
+
+### Remove from Playlist
+
+`DELETE /playlists/:playlistId/favorites/:favoriteId`
 
 **Example Response**
 
